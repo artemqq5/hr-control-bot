@@ -1,0 +1,1 @@
+ERROR-ACCESS_ACTIVATED_BEFORE = Доступ було активовано раніше
