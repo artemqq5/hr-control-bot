@@ -5,15 +5,15 @@ from aiogram_i18n import I18nContext
 
 from data.constants import ROLE_ADMIN
 from data.repository.EmployeeRepository import EmployeeRepository
-from domain.handler.admin.access_ import generate_access, delete_access
+from domain.handler.admin.employees import delete_employee, add_employee
 from domain.middleware.RoleMiddleware import RoleMiddleware
 from presentation.keyboards.admin.employees_kb.employees_nav_kb import *
 
 router = Router()
 
 router.include_routers(
-    # generate_access.router,
-    # delete_access.router
+    add_employee.router,
+    delete_employee.router
 )
 
 router.message.middleware(RoleMiddleware(ROLE_ADMIN))
@@ -25,38 +25,37 @@ async def employees_nav_call(callback: CallbackQuery, state: FSMContext, i18n: I
     page = int(callback.data.split(":")[1])
 
     await state.update_data(last_page_employees=page)
-    access_list = EmployeeRepository().employees()
+    employee_list = EmployeeRepository().employees()
 
     await callback.message.edit_text(
-        text=i18n.ADMIN.HEADS_ACCESS(),
-        reply_markup=kb_employees_managment(access_list, current_page=page)
+        text=i18n.ADMIN.EMPLOYEES(),
+        reply_markup=kb_employees_managment(employee_list, current_page=page)
     )
 
 
-@router.callback_query(UsersDescription.filter())
+@router.callback_query(EmployeesDescription.filter())
 async def user_description_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext):
-    user_id = int(callback.data.split(":")[1])
-    user = EmployeeRepository().user(user_id)
+    employee_id = int(callback.data.split(":")[1])
+    employee = EmployeeRepository().employee(employee_id)
 
-    await state.update_data(user=user)
+    await state.update_data(employee=employee)
 
     await callback.message.edit_text(
-        i18n.USER.DESCIPTION(
-            realname=user['realname'],
-            user_id=str(user['user_id']),
-            username=f"@{user['username']}" if user.get('username') else "-",
-            join=user['join']
+        i18n.EMPLOYEE.DESC(
+            employee_name=employee['employee_name'],
+            employee_id=employee['employee_id'],
+            employee_position=employee['employee_position'],
         ),
-        reply_markup=kb_user_detail
+        reply_markup=kb_employee_detail
     )
 
 
-@router.callback_query(BackUsersNavigation.filter())
+@router.callback_query(BackEmployeesNavigation.filter())
 async def employees_back_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext):
     data = await state.get_data()
-    # access_list = EmployeeRepository().registered_employees()
+    employee_list = EmployeeRepository().employees()
 
     await callback.message.edit_text(
-        text=i18n.ADMIN.HEADS_ACCESS(),
-        reply_markup=kb_employees_managment(access_list, current_page=data.get('last_page_employees', 1))
+        text=i18n.ADMIN.EMPLOYEES(),
+        reply_markup=kb_employees_managment(employee_list, current_page=data.get('last_page_employees', 1))
     )
