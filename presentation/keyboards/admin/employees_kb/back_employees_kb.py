@@ -8,5 +8,5 @@ class BackEmployeesNavigation(CallbackData, prefix="BackEmployeesNavigation"):
 
 
 kb_back_employees_nav = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=L.BACK(), callback_data=BackEmployeesNavigation().pack())]
+    [InlineKeyboardButton(text=L.GENERAL.BACK(), callback_data=BackEmployeesNavigation().pack())]
 ])

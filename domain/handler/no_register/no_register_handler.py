@@ -21,7 +21,7 @@ async def start_deeplink(message: Message, command: CommandObject, state: FSMCon
     user = message.from_user
 
     if not join_key:
-        await message.answer(text=i18n.IS_NOT_REGISTERED())
+        await message.answer(text=i18n.GENERAL.IS_NOT_REGISTERED())
         return
 
     activate_access = AccessTransactions().register_user_transaction(user.id, user.username, join_key, i18n)
@@ -36,4 +36,4 @@ async def start_deeplink(message: Message, command: CommandObject, state: FSMCon
 @router.message(RoleFilter(None))
 async def messages(message: Message, state: FSMContext, i18n: I18nContext):
     if not UserRepository().user(message.from_user.id).get('role'):
-        await message.answer(text=i18n.IS_NOT_REGISTERED())
+        await message.answer(text=i18n.GENERAL.IS_NOT_REGISTERED())

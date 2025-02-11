@@ -14,8 +14,8 @@ class UsersDescription(CallbackData, prefix="UsersDescription"):
 
 
 kb_user_detail = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=L.ACCESS.DELETE(), callback_data=DeleteAccess().pack())],
-    [InlineKeyboardButton(text=L.BACK(), callback_data=BackUsersNavigation().pack())]
+    [InlineKeyboardButton(text=L.ADMIN.ACCESS.DELETE(), callback_data=DeleteAccess().pack())],
+    [InlineKeyboardButton(text=L.GENERAL.BACK(), callback_data=BackUsersNavigation().pack())]
 ])
 
 
@@ -25,7 +25,7 @@ class UsersNavigation(CallbackData, prefix="UsersNavigation"):
 
 def kb_users_managment(users, current_page: int = 1):
     inline_kb = [[InlineKeyboardButton(
-        text=L.ACCESS.GENERATE(),
+        text=L.ADMIN.ACCESS.GENERATE(),
         callback_data=GenerateAccess().pack()
     )]]
 

@@ -29,7 +29,7 @@ router.callback_query.middleware(RoleMiddleware(ROLE_ADMIN))
 @router.message(Command("start"), RoleFilter(ROLE_ADMIN))
 async def start(message: Message, state: FSMContext, i18n: I18nContext):
     await state.clear()
-    await message.answer(i18n.MENU(), reply_markup=kb_menu_admin)
+    await message.answer(i18n.GENERAL.MENU(), reply_markup=kb_menu_admin)
 
 
 @router.message(F.text == L.ADMIN.HEADS_ACCESS())

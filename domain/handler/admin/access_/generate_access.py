@@ -22,7 +22,7 @@ router.callback_query.middleware(RoleMiddleware(ROLE_ADMIN))
 @router.callback_query(GenerateAccess.filter())
 async def generate_access_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext):
     await state.set_state(GenerateAccessState.RealName)
-    await callback.message.edit_text(i18n.ACCESS.GENERATE.NAME(), reply_markup=kb_back_users_nav)
+    await callback.message.edit_text(i18n.ADMIN.ACCESS.GENERATE.NAME(), reply_markup=kb_back_users_nav)
 
 
 @router.message(GenerateAccessState.RealName)
@@ -30,7 +30,7 @@ async def set_access_name(message: Message, state: FSMContext, i18n: I18nContext
     await state.update_data(realname=message.text)
     await state.update_data()
     await message.answer(
-        i18n.ACCESS.GENERATE.CONFIRMATION(realname=message.text),
+        i18n.ADMIN.ACCESS.GENERATE.CONFIRMATION(realname=message.text),
         reply_markup=kb_confirmation_generate_access
     )
 
@@ -44,10 +44,10 @@ async def generate_access_call(callback: CallbackQuery, state: FSMContext, i18n:
     access_uuid = uuid.uuid4()
 
     if not AccessRepository().generate_access(access_uuid, data['realname']):
-        await callback.message.answer(i18n.ACCESS.GENERATE.FAIL(), reply_markup=kb_back_users_nav)
+        await callback.message.answer(i18n.ADMIN.ACCESS.GENERATE.FAIL(), reply_markup=kb_back_users_nav)
         return
 
     await callback.message.answer(
-        i18n.ACCESS.GENERATE.SUCCESS(deeplink=DEEPLINK.format(access_uuid)),
+        i18n.ADMIN.ACCESS.GENERATE.SUCCESS(deeplink=DEEPLINK.format(access_uuid)),
         reply_markup=kb_back_users_nav
     )

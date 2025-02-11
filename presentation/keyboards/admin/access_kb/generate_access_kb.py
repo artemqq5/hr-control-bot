@@ -14,6 +14,6 @@ class ConfirmationGenerateAccess(CallbackData, prefix="ConfirmationGenerateAcces
 
 
 kb_confirmation_generate_access = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=L.CONFIRMATION(), callback_data=ConfirmationGenerateAccess().pack())],
-    [InlineKeyboardButton(text=L.BACK(), callback_data=BackUsersNavigation().pack())]
+    [InlineKeyboardButton(text=L.GENERAL.CONFIRMATION(), callback_data=ConfirmationGenerateAccess().pack())],
+    [InlineKeyboardButton(text=L.GENERAL.BACK(), callback_data=BackUsersNavigation().pack())]
 ])

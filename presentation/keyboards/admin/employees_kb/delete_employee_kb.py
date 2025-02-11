@@ -14,6 +14,6 @@ class ConfirmationDeleteEmployee(CallbackData, prefix="ConfirmationDeleteEmploye
 
 
 kb_confirmation_delete_employee = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=L.CONFIRMATION(), callback_data=ConfirmationDeleteEmployee().pack())],
-    [InlineKeyboardButton(text=L.BACK(), callback_data=BackEmployeesNavigation().pack())]
+    [InlineKeyboardButton(text=L.GENERAL.CONFIRMATION(), callback_data=ConfirmationDeleteEmployee().pack())],
+    [InlineKeyboardButton(text=L.GENERAL.BACK(), callback_data=BackEmployeesNavigation().pack())]
 ])

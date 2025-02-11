@@ -14,6 +14,6 @@ class ConfirmationDeleteAccess(CallbackData, prefix="ConfirmationDeleteAccess"):
 
 
 kb_confirmation_delete_access = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=L.CONFIRMATION(), callback_data=ConfirmationDeleteAccess().pack())],
-    [InlineKeyboardButton(text=L.BACK(), callback_data=BackUsersNavigation().pack())]
+    [InlineKeyboardButton(text=L.GENERAL.CONFIRMATION(), callback_data=ConfirmationDeleteAccess().pack())],
+    [InlineKeyboardButton(text=L.GENERAL.BACK(), callback_data=BackUsersNavigation().pack())]
 ])

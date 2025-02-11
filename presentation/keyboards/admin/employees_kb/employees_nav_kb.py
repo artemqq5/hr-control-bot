@@ -14,8 +14,8 @@ class EmployeesDescription(CallbackData, prefix="EmployeesDescription"):
 
 
 kb_employee_detail = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=L.EMPLOYEE.DELETE(), callback_data=DeleteAccess().pack())],
-    [InlineKeyboardButton(text=L.BACK(), callback_data=BackEmployeesNavigation().pack())]
+    [InlineKeyboardButton(text=L.ADMIN.EMPLOYEE.DELETE(), callback_data=DeleteAccess().pack())],
+    [InlineKeyboardButton(text=L.GENERAL.BACK(), callback_data=BackEmployeesNavigation().pack())]
 ])
 
 
@@ -25,7 +25,7 @@ class EmployeesNavigation(CallbackData, prefix="EmployeesNavigation"):
 
 def kb_employees_managment(emmployes, current_page: int = 1):
     inline_kb = [[InlineKeyboardButton(
-        text=L.EMPLOYEE.ADD(),
+        text=L.ADMIN.EMPLOYEE.ADD(),
         callback_data=AddEmployee().pack()
     )]]
 

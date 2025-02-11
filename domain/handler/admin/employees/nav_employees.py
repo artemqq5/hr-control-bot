@@ -41,7 +41,7 @@ async def user_description_call(callback: CallbackQuery, state: FSMContext, i18n
     await state.update_data(employee=employee)
 
     await callback.message.edit_text(
-        i18n.EMPLOYEE.DESC(
+        i18n.ADMIN.EMPLOYEE.DESC(
             employee_name=employee['employee_name'],
             employee_id=employee['employee_id'],
             employee_position=employee['employee_position'],
@@ -56,6 +56,6 @@ async def employees_back_call(callback: CallbackQuery, state: FSMContext, i18n: 
     employee_list = EmployeeRepository().employees()
 
     await callback.message.edit_text(
-        text=i18n.ADMIN.EMPLOYEES(),
+        text=i18n.ADMIN.ADMIN.EMPLOYEES(),
         reply_markup=kb_employees_managment(employee_list, current_page=data.get('last_page_employees', 1))
     )

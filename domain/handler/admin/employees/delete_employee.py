@@ -18,7 +18,7 @@ router.callback_query.middleware(RoleMiddleware(ROLE_ADMIN))
 @router.callback_query(DeleteEmployee.filter())
 async def delete_employee_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext):
     data = await state.get_data()
-    await callback.message.edit_text(i18n.EMPLOYEE.DELETE.CONFIRMATION(
+    await callback.message.edit_text(i18n.ADMIN.EMPLOYEE.DELETE.CONFIRMATION(
         employee_name=data['employee']['employee_name']),
         reply_markup=kb_confirmation_delete_employee
     )
@@ -32,12 +32,12 @@ async def confirmation_delete_employee_call(callback: CallbackQuery, state: FSMC
 
     if not EmployeeRepository().delete_employee(data['employee']['employee_id']):
         await callback.message.answer(
-            i18n.EMPLOYEE.DELETE.FAIL(employee_name=data['employee']['employee_name']),
+            i18n.ADMIN.EMPLOYEE.DELETE.FAIL(employee_name=data['employee']['employee_name']),
             reply_markup=kb_back_employees_nav
         )
         return
 
     await callback.message.answer(
-        i18n.EMPLOYEE.DELETE.SUCCESS(employee_name=data['employee']['employee_name']),
+        i18n.ADMIN.EMPLOYEE.DELETE.SUCCESS(employee_name=data['employee']['employee_name']),
         reply_markup=kb_back_employees_nav
     )

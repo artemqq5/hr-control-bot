@@ -14,6 +14,6 @@ class ConfirmationAddEmployee(CallbackData, prefix="ConfirmationAddEmployee"):
 
 
 kb_confirmation_add_employee = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=L.CONFIRMATION(), callback_data=ConfirmationAddEmployee().pack())],
-    [InlineKeyboardButton(text=L.BACK(), callback_data=BackEmployeesNavigation().pack())]
+    [InlineKeyboardButton(text=L.GENERAL.CONFIRMATION(), callback_data=ConfirmationAddEmployee().pack())],
+    [InlineKeyboardButton(text=L.GENERAL.BACK(), callback_data=BackEmployeesNavigation().pack())]
 ])

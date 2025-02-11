@@ -43,7 +43,7 @@ async def user_description_call(callback: CallbackQuery, state: FSMContext, i18n
     await state.update_data(user=user)
 
     await callback.message.edit_text(
-        i18n.USER.DESCIPTION(
+        i18n.ADMIN.USER.DESCIPTION(
             realname=user['realname'],
             user_id=str(user['user_id']),
             username=f"@{user['username']}" if user.get('username') else "-",

@@ -19,7 +19,7 @@ router.callback_query.middleware(RoleMiddleware(ROLE_ADMIN))
 @router.callback_query(DeleteAccess.filter())
 async def delete_access_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext):
     data = await state.get_data()
-    await callback.message.edit_text(i18n.ACCESS.DELETE.CONFIRMATION(
+    await callback.message.edit_text(i18n.ADMIN.ACCESS.DELETE.CONFIRMATION(
         realname=data['user']['realname']),
         reply_markup=kb_confirmation_delete_access
     )
@@ -33,12 +33,12 @@ async def confirmation_delete_access_call(callback: CallbackQuery, state: FSMCon
 
     if not UserRepository().delete_user_role(data['user']['user_id']):
         await callback.message.answer(
-            i18n.ACCESS.DELETE.FAIL(realname=data['user']['realname']),
+            i18n.ADMIN.ACCESS.DELETE.FAIL(realname=data['user']['realname']),
             reply_markup=kb_back_users_nav
         )
         return
 
     await callback.message.answer(
-        i18n.ACCESS.DELETE.SUCCESS(realname=data['user']['realname']),
+        i18n.ADMIN.ACCESS.DELETE.SUCCESS(realname=data['user']['realname']),
         reply_markup=kb_back_users_nav
     )
