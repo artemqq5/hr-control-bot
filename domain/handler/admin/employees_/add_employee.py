@@ -44,7 +44,7 @@ async def set_employee_position(message: Message, state: FSMContext, i18n: I18nC
 
 
 @router.callback_query(ConfirmationAddEmployee.filter())
-async def add_employee_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext):
+async def confirmation_add_employee_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext):
     await state.set_state(None)
     await callback.message.delete()
 

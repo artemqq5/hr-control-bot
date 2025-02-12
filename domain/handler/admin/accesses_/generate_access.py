@@ -28,7 +28,6 @@ async def generate_access_call(callback: CallbackQuery, state: FSMContext, i18n:
 @router.message(GenerateAccessState.RealName)
 async def set_access_name(message: Message, state: FSMContext, i18n: I18nContext):
     await state.update_data(realname=message.text)
-    await state.update_data()
     await message.answer(
         i18n.ADMIN.ACCESS.GENERATE.CONFIRMATION(realname=message.text),
         reply_markup=kb_confirmation_generate_access
@@ -36,7 +35,7 @@ async def set_access_name(message: Message, state: FSMContext, i18n: I18nContext
 
 
 @router.callback_query(ConfirmationGenerateAccess.filter())
-async def generate_access_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext):
+async def confirmation_generate_access_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext):
     await state.set_state(None)
     await callback.message.delete()
 

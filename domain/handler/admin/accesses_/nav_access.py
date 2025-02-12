@@ -5,7 +5,7 @@ from aiogram_i18n import I18nContext
 
 from data.constants import ROLE_ADMIN
 from data.repository.UserRepository import UserRepository
-from domain.handler.admin.access_ import generate_access, delete_access
+from domain.handler.admin.accesses_ import generate_access, delete_access
 from domain.middleware.RoleMiddleware import RoleMiddleware
 from presentation.keyboards.admin.access_kb.access_nav_kb import UsersNavigation, kb_users_managment, UsersDescription, \
     kb_user_detail

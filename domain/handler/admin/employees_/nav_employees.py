@@ -5,7 +5,7 @@ from aiogram_i18n import I18nContext
 
 from data.constants import ROLE_ADMIN
 from data.repository.EmployeeRepository import EmployeeRepository
-from domain.handler.admin.employees import delete_employee, add_employee
+from domain.handler.admin.employees_ import add_employee, delete_employee
 from domain.middleware.RoleMiddleware import RoleMiddleware
 from presentation.keyboards.admin.employees_kb.employees_nav_kb import *
 

@@ -6,20 +6,24 @@ from aiogram_i18n import I18nContext, L
 
 from data.constants import ROLE_ADMIN
 from data.repository.EmployeeRepository import EmployeeRepository
+from data.repository.InformationRepository import InformationRepository
 from data.repository.UserRepository import UserRepository
 from domain.filter.RoleFilter import RoleFilter
-from domain.handler.admin.access_ import nav_access
-from domain.handler.admin.employees import nav_employees
+from domain.handler.admin.accesses_ import nav_access
+from domain.handler.admin.employees_ import nav_employees
+from domain.handler.admin.informations_ import nav_informations
 from domain.middleware.RoleMiddleware import RoleMiddleware
 from presentation.keyboards.admin.access_kb.access_nav_kb import kb_users_managment
 from presentation.keyboards.admin.employees_kb.employees_nav_kb import kb_employees_managment
 from presentation.keyboards.admin.general_admin_kb import kb_menu_admin
+from presentation.keyboards.admin.informations_kb.informations_nav_kb import kb_informations_managment
 
 router = Router()
 
 router.include_routers(
     nav_access.router,
-    nav_employees.router
+    nav_employees.router,
+    nav_informations.router
 )
 
 router.message.middleware(RoleMiddleware(ROLE_ADMIN))
@@ -46,6 +50,9 @@ async def employees(message: Message, i18n: I18nContext, state: FSMContext):
 
 @router.message(F.text == L.ADMIN.INFORMATIONS())
 async def informations(message: Message, i18n: I18nContext, state: FSMContext):
-    # teams = TeamRepository().teams()
-    # await message.answer(i18n.ADMIN.TEAMS(), reply_markup=kb_teams_manage(teams))
+    information_list = InformationRepository().informations()
+    await message.answer(
+        text=i18n.ADMIN.INFORMATIONS(),
+        reply_markup=kb_informations_managment(information_list)
+    )
     pass

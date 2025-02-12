@@ -1,12 +1,10 @@
 HEAD-REGISTER_SUCCESS = Ключ успішно активовано!
 
-HEAD-INFORMATIONS
-
 # Informations-create
 HEAD-INFORMATION-CREATE = Створити відомість
-HEAD-INFORMATION-CREATE-CHOOSE_EMPLOYEE = Оберіть працівника або пропустіть цей етап
-HEAD-INFORMATION-CREATE-DESC = Напишіть все що вважаєте за потрібним:
-HEAD-INFORMATION-CREATE-CONFIRMATION = Ви хочете створити відомість на <b>{$realname}<b>
+HEAD-INFORMATION-CREATE-CHOICE_EMPLOYEE = Оберіть працівника
+HEAD-INFORMATION-CREATE-DESCRIBE = Напишіть все що вважаєте за потрібним:
+HEAD-INFORMATION-CREATE-CONFIRMATION = Ви хочете створити відомість на <b>{$employee_name}</b>
     Опис: {$desc}
 
     <b>Тут все правильно?</b>
@@ -14,8 +12,8 @@ HEAD-INFORMATION-CREATE-SUCCESS = Відомість успішно створе
 HEAD-INFORMATION-CREATE-FAIL = Не вийшло створити відомість
 
 # Informations-view
-HEAD-INFORMATION-VIEW = Створені відомості
-HEAD-INFORMATION-VIEW-DESC = Відомість <b>#{$id}</b> по <b>{$realname}</b>
+HEAD-INFORMATIONS = Створені відомості
+HEAD-INFORMATION-DESC = Відомість <b>#{$id}</b> по <b>{$employee_name}</b>
     =============================
     {$desc}
 

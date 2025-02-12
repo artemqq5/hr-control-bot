@@ -38,9 +38,14 @@ ADMIN-EMPLOYEE-DELETE-SUCCESS = Працівника (<b>{$employee_name}</b>) �
 ADMIN-EMPLOYEE-DELETE-FAIL = Не вдалося видалити працівника (<b>{$employee_name}</b>) ❌
 
 # Informations
-ADMIN-INFORMATION-DESC = Відомість <b>#{$id}</b> по <b>{$realname}</b>
+ADMIN-INFORMATION-REPORT = Вигрузити аналітику
+ADMIN-INFORMATION-REPORT-CONFIRMATION = Вигрузити analitics.xlsx з усіма відомостями на даний момент?
+ADMIN-INFORMATION-REPORT-ERROR-NO_INFO = Немає відомостей для генерації
+ADMIN-INFORMATION-REPORT-SUCCESS = Успішно згенеровано, ось ваш файл
+ADMIN-INFORMATION-REPORT-FAIL = Не вийшло згенерувати
+ADMIN-INFORMATION-DESC = Відомість <b>#{$id}</b> по <b>{$employee_name}</b>
     =============================
     {$desc}
 
+    Від: <b>{$realname}</b> ({$username})
     Дата: <b>{$created}</b>
-
