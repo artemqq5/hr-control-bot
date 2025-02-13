@@ -12,7 +12,7 @@ class EmployeeRepository(SimpleDataBase):
         return self._insert(query, (employee_name, employee_position))
 
     def employees(self):
-        query = "SELECT * FROM `employees`;"
+        query = "SELECT * FROM `employees` ORDER BY `employee_id` DESC;"
         return self._select(query)
 
     def delete_employee(self, employee_id):

@@ -8,7 +8,7 @@ class InformationRepository(SimpleDataBase):
         return self._insert(query, (employee_id, employee_name, desc, user_id, username, realname))
 
     def informations(self):
-        query = "SELECT * FROM `informations`;"
+        query = "SELECT * FROM `informations` ORDER BY `created` DESC;"
         return self._select(query)
 
     def information(self, _id):

@@ -55,4 +55,3 @@ async def informations(message: Message, i18n: I18nContext, state: FSMContext):
         text=i18n.ADMIN.INFORMATIONS(),
         reply_markup=kb_informations_managment(information_list)
     )
-    pass

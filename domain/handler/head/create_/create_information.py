@@ -1,4 +1,4 @@
-from aiogram import Router
+from aiogram import Router, Bot
 from aiogram.fsm.context import FSMContext
 from aiogram.types import CallbackQuery, Message
 from aiogram_i18n import I18nContext
@@ -9,6 +9,7 @@ from data.repository.InformationRepository import InformationRepository
 from data.repository.UserRepository import UserRepository
 from domain.middleware.RoleMiddleware import RoleMiddleware
 from domain.states.head.CreateInformState import CreateInformState
+from domain.utilities.notifications.AdminNotificationManager import AdminNotificationManager
 from presentation.keyboards.head.create_inform_kb.choice_employees_nav_kb import *
 from presentation.keyboards.head.create_inform_kb.confirmation_create_info_kb import kb_confirmation_create_inform, \
     ConfirmationCreateInform
@@ -42,7 +43,7 @@ async def set_inform_desc(message: Message, state: FSMContext, i18n: I18nContext
 
 
 @router.callback_query(ConfirmationCreateInform.filter(), CreateInformState.Describe)
-async def confirmation_create_inform_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext):
+async def confirmation_create_inform_call(callback: CallbackQuery, state: FSMContext, i18n: I18nContext, bot: Bot):
     await state.set_state(None)
     await callback.message.delete()
 
@@ -63,3 +64,4 @@ async def confirmation_create_inform_call(callback: CallbackQuery, state: FSMCon
         return
 
     await callback.message.answer(i18n.HEAD.INFORMATION.CREATE.SUCCESS())
+    await AdminNotificationManager().user_created_information(data, callback.from_user.id, bot, i18n)

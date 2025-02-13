@@ -8,19 +8,16 @@ from presentation.keyboards.admin.informations_kb.back_informations_kb import Ba
 from presentation.keyboards.admin.informations_kb.generate_analitics_kb import GenerateAnalitics
 
 
-class InformationDescription(CallbackData, prefix="InformationDescription"):
+class MyInformationDescription(CallbackData, prefix="MyInformationDescription"):
     id: int
 
 
-class InformationsNavigation(CallbackData, prefix="InformationsNavigation"):
+class MyInformationsNavigation(CallbackData, prefix="MyInformationsNavigation"):
     page: int
 
 
-def kb_informations_managment(informations, current_page: int = 1):
-    inline_kb = [[InlineKeyboardButton(
-        text=L.ADMIN.INFORMATION.REPORT(),
-        callback_data=GenerateAnalitics().pack()
-    )]]
+def kb_my_informations_managment(informations, current_page: int = 1):
+    inline_kb = []
 
     # if items less then pages exist before -> Leave to 1 page
     if len(informations) < (current_page * 15) - 14:
@@ -35,7 +32,7 @@ def kb_informations_managment(informations, current_page: int = 1):
         inline_kb.append(
             [InlineKeyboardButton(
                 text=f"#{informations[i]['id']} {informations[i]['employee_name']} - {informations[i]['desc']}",
-                callback_data=InformationDescription(id=informations[i]['id']).pack()
+                callback_data=MyInformationDescription(id=informations[i]['id']).pack()
             )]
         )
 
@@ -45,7 +42,7 @@ def kb_informations_managment(informations, current_page: int = 1):
         if current_page > 1:
             nav.append(InlineKeyboardButton(
                 text='◀️',
-                callback_data=InformationsNavigation(page=current_page - 1).pack()
+                callback_data=MyInformationsNavigation(page=current_page - 1).pack()
             ))
 
         nav.append(InlineKeyboardButton(text=f"{current_page}/{total_pages}", callback_data="None"))
@@ -53,7 +50,7 @@ def kb_informations_managment(informations, current_page: int = 1):
         if current_page < total_pages:
             nav.append(InlineKeyboardButton(
                 text='▶️',
-                callback_data=InformationsNavigation(page=current_page + 1).pack()
+                callback_data=MyInformationsNavigation(page=current_page + 1).pack()
             ))
 
         inline_kb.append(nav)

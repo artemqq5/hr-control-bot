@@ -56,6 +56,6 @@ async def employees_back_call(callback: CallbackQuery, state: FSMContext, i18n: 
     employee_list = EmployeeRepository().employees()
 
     await callback.message.edit_text(
-        text=i18n.ADMIN.ADMIN.EMPLOYEES(),
+        text=i18n.ADMIN.EMPLOYEES(),
         reply_markup=kb_employees_managment(employee_list, current_page=data.get('last_page_employees', 1))
     )
