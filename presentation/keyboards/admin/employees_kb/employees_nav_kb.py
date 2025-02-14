@@ -4,9 +4,9 @@ from aiogram.filters.callback_data import CallbackData
 from aiogram_i18n import L
 from aiogram_i18n.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from presentation.keyboards.admin.access_kb.delete_access_kb import DeleteAccess
 from presentation.keyboards.admin.employees_kb.add_employee_kb import AddEmployee
 from presentation.keyboards.admin.employees_kb.back_employees_kb import BackEmployeesNavigation
+from presentation.keyboards.admin.employees_kb.delete_employee_kb import DeleteEmployee
 
 
 class EmployeesDescription(CallbackData, prefix="EmployeesDescription"):
@@ -14,7 +14,7 @@ class EmployeesDescription(CallbackData, prefix="EmployeesDescription"):
 
 
 kb_employee_detail = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text=L.ADMIN.EMPLOYEE.DELETE(), callback_data=DeleteAccess().pack())],
+    [InlineKeyboardButton(text=L.ADMIN.EMPLOYEE.DELETE(), callback_data=DeleteEmployee().pack())],
     [InlineKeyboardButton(text=L.GENERAL.BACK(), callback_data=BackEmployeesNavigation().pack())]
 ])
 

@@ -4,7 +4,6 @@ from aiogram.filters.callback_data import CallbackData
 from aiogram_i18n import L
 from aiogram_i18n.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from presentation.keyboards.admin.informations_kb.back_informations_kb import BackInformationsNavigation
 from presentation.keyboards.admin.informations_kb.generate_analitics_kb import GenerateAnalitics
 
 
