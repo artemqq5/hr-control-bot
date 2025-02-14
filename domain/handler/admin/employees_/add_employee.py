@@ -24,21 +24,11 @@ async def add_employee_call(callback: CallbackQuery, state: FSMContext, i18n: I1
 
 @router.message(AddEmployeeState.Name)
 async def set_employee_name(message: Message, state: FSMContext, i18n: I18nContext):
-    await state.set_state(AddEmployeeState.Position)
     await state.update_data(name=message.text)
-    await message.answer(i18n.ADMIN.EMPLOYEE.ADD.POSITION(), reply_markup=kb_back_employees_nav)
-
-
-@router.message(AddEmployeeState.Position)
-async def set_employee_position(message: Message, state: FSMContext, i18n: I18nContext):
-    await state.update_data(position=message.text)
     data = await state.get_data()
 
     await message.answer(
-        i18n.ADMIN.EMPLOYEE.ADD.CONFIRMATION(
-            employee_name=data['name'],
-            employee_position=data['position']
-        ),
+        i18n.ADMIN.EMPLOYEE.ADD.CONFIRMATION(employee_name=data['name']),
         reply_markup=kb_confirmation_add_employee
     )
 
@@ -50,7 +40,7 @@ async def confirmation_add_employee_call(callback: CallbackQuery, state: FSMCont
 
     data = await state.get_data()
 
-    if not EmployeeRepository().add_employee(data['name'], data['position']):
+    if not EmployeeRepository().add_employee(data['name']):
         await callback.message.answer(i18n.ADMIN.EMPLOYEE.ADD.FAIL(), reply_markup=kb_back_employees_nav)
         return
 

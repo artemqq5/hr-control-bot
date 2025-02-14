@@ -12,6 +12,7 @@ import config
 from domain.handler.admin import admin_handler
 from domain.handler.head import head_handler
 from domain.handler.no_register import no_register_handler
+from domain.handler.admin_head import admin_head_handler
 from domain.middleware.IsUserRegisteredMiddleware import IsUserRegisteredMiddleware
 from domain.middleware.LocaleManager import LocaleManager
 
@@ -22,6 +23,7 @@ dp.include_routers(
     no_register_handler.router,
     admin_handler.router,
     head_handler.router,
+    admin_head_handler.router
 )
 
 

@@ -7,14 +7,14 @@ class EmployeeRepository(SimpleDataBase):
         query = "SELECT * FROM `employees` WHERE `employee_id` = %s;"
         return self._select_one(query, (employee_id,))
 
-    def add_employee(self, employee_name, employee_position):
-        query = "INSERT INTO `employees` (`employee_name`, `employee_position`) VALUES (%s, %s);"
-        return self._insert(query, (employee_name, employee_position))
+    def add_employee(self, employee_name):
+        query = "INSERT INTO `employees` (`employee_name`) VALUES (%s);"
+        return self._insert(query, (employee_name,))
 
     def employees(self):
         query = "SELECT * FROM `employees` ORDER BY `employee_id` DESC;"
         return self._select(query)
 
     def delete_employee(self, employee_id):
-        query = "DELETE * FROM `employees` WHERE `employee_id` = %s;"
+        query = "DELETE FROM `employees` WHERE `employee_id` = %s;"
         return self._delete(query, (employee_id,))

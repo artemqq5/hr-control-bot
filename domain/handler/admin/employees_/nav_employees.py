@@ -44,7 +44,6 @@ async def user_description_call(callback: CallbackQuery, state: FSMContext, i18n
         i18n.ADMIN.EMPLOYEE.DESC(
             employee_name=employee['employee_name'],
             employee_id=employee['employee_id'],
-            employee_position=employee['employee_position'],
         ),
         reply_markup=kb_employee_detail
     )

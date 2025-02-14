@@ -8,8 +8,8 @@ from data.repository.UserRepository import UserRepository
 
 class RoleMiddleware(BaseMiddleware):
 
-    def __init__(self, role: Optional[str]):
-        self.role = role
+    def __init__(self, *roles: Optional[str]):
+        self.role = list(roles)
 
     async def __call__(
             self,
@@ -22,6 +22,6 @@ class RoleMiddleware(BaseMiddleware):
 
         user_id = event.from_user.id
 
-        if UserRepository().user(user_id).get('user_role', None) == self.role:
+        if UserRepository().user(user_id).get('user_role', None) in self.role:
             return await handler(event, data)
 
